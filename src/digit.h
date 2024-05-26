@@ -2,6 +2,7 @@
 
 #include <map>
 #include <string>
+#include <memory>
 
 #include "dline.h"
 
@@ -19,14 +20,14 @@ enum class DLinePosition
 class Digit
 {
     private:
-        std::map<DLinePosition, DLine*> dLines;
+        std::map<DLinePosition, std::unique_ptr<DLine>> dLines;
         int digit;
         void initialiseDLines();
         void setDLines() const; 
     
     public:
         Digit();
-        Digit(int d);
-        void setDigit(int d);
+        Digit(const int d);
+        void setDigit(const int d);
         std::string toString();
 };

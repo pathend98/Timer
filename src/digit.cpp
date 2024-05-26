@@ -5,9 +5,9 @@
 
 using std::string;
 using std::map;
-using std::vector;
+using std::make_unique;
 
-Digit::Digit(int d) :
+Digit::Digit(const int d) :
     digit(d)
 {
     initialiseDLines();
@@ -18,27 +18,24 @@ Digit::Digit() : Digit(0) {}
 
 void Digit::initialiseDLines()
 {
-    dLines = map<DLinePosition, DLine*> {};
+    dLines.clear();
     for (const auto& [position, orientation] : dLineOrientations)
-    {
-        dLines[position] = new DLine(orientation);
-    }
+        dLines[position] = make_unique<DLine>(orientation);
 }
 
 void Digit::setDLines() const
 {
-    auto configuration = digitDLineConfigurations[digit];
-    for (auto [position, dLine] : dLines)
+    const auto& configuration = digitDLineConfigurations[digit];
+    for (const auto& [position, dLine] : dLines)
     {
-        if (configuration[position]) {
+        if (configuration.at(position))
             dLine->turnOn();
-        } else {
+        else 
             dLine->turnOff();
-        }
     }
 }
 
-void Digit::setDigit(int d)
+void Digit::setDigit(const int d)
 {
     digit = d;
     setDLines();
@@ -54,13 +51,13 @@ string Digit::toString()
     string horizontalLineOn = "|";
     string horizontalLineOff = " ";
 
-    return " " + (dLines[DLinePosition::TOP]->isOn() ? verticalLineOn : verticalLineOff) + " \n" 
-        + (dLines[DLinePosition::TOP_LEFT]->isOn() ? horizontalLineOn : horizontalLineOff) + "    " + (dLines[DLinePosition::TOP_RIGHT]->isOn() ? horizontalLineOn : horizontalLineOff) + "\n"
-        + (dLines[DLinePosition::TOP_LEFT]->isOn() ? horizontalLineOn : horizontalLineOff) + "    " + (dLines[DLinePosition::TOP_RIGHT]->isOn() ? horizontalLineOn : horizontalLineOff) + "\n"
-        + (dLines[DLinePosition::TOP_LEFT]->isOn() ? horizontalLineOn : horizontalLineOff) + "    " + (dLines[DLinePosition::TOP_RIGHT]->isOn() ? horizontalLineOn : horizontalLineOff) + "\n"
-        + " " + (dLines[DLinePosition::MIDDLE]->isOn() ? verticalLineOn : verticalLineOff) + " \n"
-        + (dLines[DLinePosition::BOTTOM_LEFT]->isOn() ? horizontalLineOn : horizontalLineOff) + "    " + (dLines[DLinePosition::BOTTOM_RIGHT]->isOn() ? horizontalLineOn : horizontalLineOff) + "\n"
-        + (dLines[DLinePosition::BOTTOM_LEFT]->isOn() ? horizontalLineOn : horizontalLineOff) + "    " + (dLines[DLinePosition::BOTTOM_RIGHT]->isOn() ? horizontalLineOn : horizontalLineOff) + "\n"
-        + (dLines[DLinePosition::BOTTOM_LEFT]->isOn() ? horizontalLineOn : horizontalLineOff) + "    " + (dLines[DLinePosition::BOTTOM_RIGHT]->isOn() ? horizontalLineOn : horizontalLineOff) + "\n"
-        + " " + (dLines[DLinePosition::BOTTOM]->isOn() ? verticalLineOn : verticalLineOff) + " \n";
+    return " " + (dLines.at(DLinePosition::TOP)->isOn() ? verticalLineOn : verticalLineOff) + " \n" 
+        + (dLines.at(DLinePosition::TOP_LEFT)->isOn() ? horizontalLineOn : horizontalLineOff) + "    " + (dLines.at(DLinePosition::TOP_RIGHT)->isOn() ? horizontalLineOn : horizontalLineOff) + "\n"
+        + (dLines.at(DLinePosition::TOP_LEFT)->isOn() ? horizontalLineOn : horizontalLineOff) + "    " + (dLines.at(DLinePosition::TOP_RIGHT)->isOn() ? horizontalLineOn : horizontalLineOff) + "\n"
+        + (dLines.at(DLinePosition::TOP_LEFT)->isOn() ? horizontalLineOn : horizontalLineOff) + "    " + (dLines.at(DLinePosition::TOP_RIGHT)->isOn() ? horizontalLineOn : horizontalLineOff) + "\n"
+        + " " + (dLines.at(DLinePosition::MIDDLE)->isOn() ? verticalLineOn : verticalLineOff) + " \n"
+        + (dLines.at(DLinePosition::BOTTOM_LEFT)->isOn() ? horizontalLineOn : horizontalLineOff) + "    " + (dLines.at(DLinePosition::BOTTOM_RIGHT)->isOn() ? horizontalLineOn : horizontalLineOff) + "\n"
+        + (dLines.at(DLinePosition::BOTTOM_LEFT)->isOn() ? horizontalLineOn : horizontalLineOff) + "    " + (dLines.at(DLinePosition::BOTTOM_RIGHT)->isOn() ? horizontalLineOn : horizontalLineOff) + "\n"
+        + (dLines.at(DLinePosition::BOTTOM_LEFT)->isOn() ? horizontalLineOn : horizontalLineOff) + "    " + (dLines.at(DLinePosition::BOTTOM_RIGHT)->isOn() ? horizontalLineOn : horizontalLineOff) + "\n"
+        + " " + (dLines.at(DLinePosition::BOTTOM)->isOn() ? verticalLineOn : verticalLineOff) + " \n";
 }

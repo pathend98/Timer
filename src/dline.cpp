@@ -1,6 +1,8 @@
 #include "dline.h"
+#include <iostream>
 
-DLine::DLine(Orientation o) : orientation(o), on(false) {}
+DLine::DLine(const Orientation o) : orientation(o), on(false)
+{}
 
 void DLine::turnOn()
 {

@@ -13,7 +13,7 @@ class DLine
         bool on;
 
     public:
-        DLine(Orientation o);
+        DLine(const Orientation o);
         void turnOn();
         void turnOff();
         bool isOn();
