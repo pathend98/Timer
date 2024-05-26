@@ -1,5 +1,5 @@
 #include "digit.h"
-#include "dlineOrientations.h";
+#include "dlineOrientations.h"
 #include "digitDLineConfigurations.h"
 #include <vector>
 
