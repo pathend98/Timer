@@ -1,55 +1,11 @@
 #include "digit.h"
+#include "dlineOrientations.h";
+#include "digitDLineConfigurations.h"
+#include <vector>
 
 using std::string;
 using std::map;
-
-map<DLinePosition, Orientation> dLineOrientations = 
-{
-    {DLinePosition::TOP, Orientation::HORIZONTAL},
-    {DLinePosition::TOP_LEFT, Orientation::VERTICAL},
-    {DLinePosition::TOP_RIGHT, Orientation::VERTICAL},
-    {DLinePosition::MIDDLE, Orientation::HORIZONTAL},
-    {DLinePosition::BOTTOM_LEFT, Orientation::VERTICAL},
-    {DLinePosition::BOTTOM_RIGHT, Orientation::VERTICAL},
-    {DLinePosition::BOTTOM, Orientation::VERTICAL}
-};
-
-/**
- * TODO: can use a list / vector here because that's what a map with int keys should be
-*/
-map<int, map<DLinePosition, bool>> digitDLineConfigurations = 
-{
-    {0, {
-        {DLinePosition::TOP, true}, {DLinePosition::TOP_LEFT, true}, {DLinePosition::TOP_RIGHT, true}, {DLinePosition::MIDDLE, false}, {DLinePosition::BOTTOM_LEFT, true}, {DLinePosition::BOTTOM_RIGHT, true}, {DLinePosition::BOTTOM, true}
-    }},
-    {1, {
-        {DLinePosition::TOP, false}, {DLinePosition::TOP_LEFT, false}, {DLinePosition::TOP_RIGHT, true}, {DLinePosition::MIDDLE, false}, {DLinePosition::BOTTOM_LEFT, false}, {DLinePosition::BOTTOM_RIGHT, true}, {DLinePosition::BOTTOM, false}
-    }},
-    {2, {
-        {DLinePosition::TOP, true}, {DLinePosition::TOP_LEFT, false}, {DLinePosition::TOP_RIGHT, true}, {DLinePosition::MIDDLE, true}, {DLinePosition::BOTTOM_LEFT, true}, {DLinePosition::BOTTOM_RIGHT, false}, {DLinePosition::BOTTOM, true}
-    }},
-    {3, {
-        {DLinePosition::TOP, true}, {DLinePosition::TOP_LEFT, false}, {DLinePosition::TOP_RIGHT, true}, {DLinePosition::MIDDLE, true}, {DLinePosition::BOTTOM_LEFT, false}, {DLinePosition::BOTTOM_RIGHT, true}, {DLinePosition::BOTTOM, true}
-    }},
-    {4, {
-        {DLinePosition::TOP, false}, {DLinePosition::TOP_LEFT, true}, {DLinePosition::TOP_RIGHT, true}, {DLinePosition::MIDDLE, true}, {DLinePosition::BOTTOM_LEFT, false}, {DLinePosition::BOTTOM_RIGHT, true}, {DLinePosition::BOTTOM, false}
-    }},
-    {5, {
-        {DLinePosition::TOP, true}, {DLinePosition::TOP_LEFT, true}, {DLinePosition::TOP_RIGHT, false}, {DLinePosition::MIDDLE, true}, {DLinePosition::BOTTOM_LEFT, false}, {DLinePosition::BOTTOM_RIGHT, true}, {DLinePosition::BOTTOM, true}
-    }},
-    {6, {
-        {DLinePosition::TOP, true}, {DLinePosition::TOP_LEFT, true}, {DLinePosition::TOP_RIGHT, false}, {DLinePosition::MIDDLE, true}, {DLinePosition::BOTTOM_LEFT, true}, {DLinePosition::BOTTOM_RIGHT, true}, {DLinePosition::BOTTOM, true}
-    }},
-    {7, {
-        {DLinePosition::TOP, true}, {DLinePosition::TOP_LEFT, false}, {DLinePosition::TOP_RIGHT, true}, {DLinePosition::MIDDLE, false}, {DLinePosition::BOTTOM_LEFT, false}, {DLinePosition::BOTTOM_RIGHT, true}, {DLinePosition::BOTTOM, false}
-    }},
-    {8, {
-        {DLinePosition::TOP, true}, {DLinePosition::TOP_LEFT, true}, {DLinePosition::TOP_RIGHT, true}, {DLinePosition::MIDDLE, true}, {DLinePosition::BOTTOM_LEFT, true}, {DLinePosition::BOTTOM_RIGHT, true}, {DLinePosition::BOTTOM, true}
-    }},
-    {9, {
-        {DLinePosition::TOP, true}, {DLinePosition::TOP_LEFT, true}, {DLinePosition::TOP_RIGHT, true}, {DLinePosition::MIDDLE, true}, {DLinePosition::BOTTOM_LEFT, false}, {DLinePosition::BOTTOM_RIGHT, true}, {DLinePosition::BOTTOM, true}
-    }}
-};
+using std::vector;
 
 Digit::Digit(int d) :
     digit(d)
