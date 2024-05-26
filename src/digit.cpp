@@ -4,11 +4,9 @@
 #include <vector>
 
 using std::string;
-using std::map;
 using std::make_unique;
 
-Digit::Digit(const int d) :
-    digit(d)
+Digit::Digit(const int d) : digit(d)
 {
     initialiseDLines();
     setDLines();
@@ -44,7 +42,7 @@ void Digit::setDigit(const int d)
 /**
  * TODO: clean up this mess
 */
-string Digit::toString()
+string Digit::toString() const
 {
     string verticalLineOn = "====";
     string verticalLineOff = "    ";

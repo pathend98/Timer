@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include <map>
+#include <unordered_map>
 
 #include "digit.h"
 
@@ -9,7 +9,7 @@
  * Shows for each digit, whether each D-Line is on or off.
  * 
 */
-static std::vector<std::map<DLinePosition, bool>> digitDLineConfigurations = 
+static std::vector<std::unordered_map<DLinePosition, bool>> digitDLineConfigurations = 
 {
     // 0
     {
