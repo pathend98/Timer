@@ -1,21 +1,28 @@
 #pragma once
 
+#include <map>
 #include <string>
 
 #include "dline.h"
 
+enum class DLinePosition
+{
+    TOP,
+    TOP_LEFT,
+    TOP_RIGHT,
+    MIDDLE,
+    BOTTOM_LEFT,
+    BOTTOM_RIGHT,
+    BOTTOM
+};
+
 class Digit
 {
     private:
-        DLine top;
-        DLine topRight;
-        DLine topLeft;
-        DLine middle;
-        DLine bottomRight;
-        DLine bottomLeft;
-        DLine bottom;
+        std::map<DLinePosition, DLine*> dLines;
         int digit;
-        void setDlines();
+        void initialiseDLines();
+        void setDLines() const; 
     
     public:
         Digit();
