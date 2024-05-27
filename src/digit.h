@@ -3,6 +3,7 @@
 #include <unordered_map>
 #include <string>
 #include <memory>
+#include <vector>
 
 #include "dline.h"
 
@@ -29,5 +30,5 @@ class Digit
         Digit();
         Digit(const int d);
         void setDigit(const int d);
-        std::string toString() const;
+        std::shared_ptr<std::vector<std::string>> toString() const;
 };

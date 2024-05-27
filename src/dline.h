@@ -16,5 +16,6 @@ class DLine
         DLine(const Orientation o);
         void turnOn();
         void turnOff();
-        bool isOn();
+        bool isOn() const;
+        Orientation getOrientation() const;
 };

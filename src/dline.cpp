@@ -14,7 +14,12 @@ void DLine::turnOff()
     on = false;
 }
 
-bool DLine::isOn()
+bool DLine::isOn() const
 {
     return on;
+}
+
+Orientation DLine::getOrientation() const
+{
+    return orientation;
 }
