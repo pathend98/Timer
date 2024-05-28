@@ -9,7 +9,7 @@
  * Shows for each digit, whether each D-Line is on or off.
  * 
 */
-static std::vector<std::unordered_map<DLinePosition, bool>> digitDLineConfigurations = 
+static const std::vector<std::unordered_map<DLinePosition, bool>> digitDLineConfigurations = 
 {
     // 0
     {

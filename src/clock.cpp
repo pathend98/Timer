@@ -17,16 +17,20 @@ void initialiseDigitVector(vector<unique_ptr<Digit>>& digits)
         digits.push_back(make_unique<Digit>());
 }
 
-Clock::Clock(int hours, int minutes, int seconds) : 
-    hours(hours),
-    minutes(minutes),
-    seconds(seconds)
+Clock::Clock(const Time time) :
+    time(time)
 {
     initialiseDigitVector(hourDigits);
     initialiseDigitVector(minuteDigits);
     initialiseDigitVector(secondDigits);
     setDigits();
 }
+
+Clock::Clock(const int hours, const int minutes, const int seconds) : Clock(Time{hours, minutes, seconds})
+{}
+
+Clock::Clock(const int seconds) : Clock(Time{seconds /3600, (seconds % 3600) / 60, (seconds % 3600) % 60 })
+{}
 
 Clock::Clock() : Clock(0, 0, 0)
 {}
@@ -40,11 +44,26 @@ void setDigitPair(int& digit, vector<unique_ptr<Digit>>& digitPair)
 
 void Clock::setDigits()
 {
-    setDigitPair(hours, hourDigits);
-    setDigitPair(minutes, minuteDigits);
-    setDigitPair(seconds, secondDigits);
+    setDigitPair(time.hours, hourDigits);
+    setDigitPair(time.minutes, minuteDigits);
+    setDigitPair(time.seconds, secondDigits);
 }
 
+void Clock::setTime(const Time& t)
+{
+    time = t;
+    setDigits();
+}
+
+void Clock::setTime(const int hours, const int minutes, const int seconds)
+{
+    setTime(Time{hours, minutes, seconds});
+}
+
+Time Clock::getTime() const
+{
+    return time;
+}
 
 shared_ptr<vector<string>> joinStringVectors(const vector<shared_ptr<vector<string>>>& stringVectors)
 {

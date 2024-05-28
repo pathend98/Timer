@@ -3,15 +3,20 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-#include "digit.h"
-#include "clock.h"
+#include "timer.h"
 
 int main()
 {
-    Clock c(1, 2, 3);
+    Timer t(3);
 
-    const auto clockLines = c.toString();
-    for (const auto& line : *clockLines)
+    auto lines = t.toString();
+    for (const auto& line : *lines)
+        cout << line << endl;
+
+    t.start();
+
+    lines = t.toString();
+    for (const auto& line : *lines)
         cout << line << endl;
 
     return 0;    
