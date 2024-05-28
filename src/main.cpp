@@ -4,17 +4,15 @@ using std::cin;
 using std::endl;
 
 #include "digit.h"
+#include "clock.h"
 
 int main()
 {
-    int num;
-    cout << "Please input a digit to display: ";
-    cin >> num;
+    Clock c(1, 2, 3);
 
-    if (num < 0 || num > 9)
-        return 1;
+    const auto clockLines = c.toString();
+    for (const auto& line : *clockLines)
+        cout << line << endl;
 
-    Digit d(num);
-    cout << d.toString() << endl;
     return 0;    
 }

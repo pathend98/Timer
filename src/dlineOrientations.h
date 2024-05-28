@@ -1,10 +1,11 @@
 #pragma once
 
-#include <map>
+#include <unordered_map>
+
 #include "dline.h"
 #include "digit.h"
 
-static std::map<DLinePosition, Orientation> dLineOrientations = 
+static std::unordered_map<DLinePosition, Orientation> dLineOrientations = 
 {
     {DLinePosition::TOP, Orientation::HORIZONTAL},
     {DLinePosition::TOP_LEFT, Orientation::VERTICAL},

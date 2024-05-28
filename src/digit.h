@@ -1,7 +1,9 @@
 #pragma once
 
-#include <map>
+#include <unordered_map>
 #include <string>
+#include <memory>
+#include <vector>
 
 #include "dline.h"
 
@@ -19,14 +21,14 @@ enum class DLinePosition
 class Digit
 {
     private:
-        std::map<DLinePosition, DLine*> dLines;
+        std::unordered_map<DLinePosition, std::unique_ptr<DLine>> dLines;
         int digit;
         void initialiseDLines();
         void setDLines() const; 
     
     public:
         Digit();
-        Digit(int d);
-        void setDigit(int d);
-        std::string toString();
+        Digit(const int d);
+        void setDigit(const int d);
+        std::shared_ptr<std::vector<std::string>> toString() const;
 };
