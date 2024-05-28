@@ -17,16 +17,18 @@ void initialiseDigitVector(vector<unique_ptr<Digit>>& digits)
         digits.push_back(make_unique<Digit>());
 }
 
-Clock::Clock(int minutes, int seconds) : 
+Clock::Clock(int hours, int minutes, int seconds) : 
+    hours(hours),
     minutes(minutes),
     seconds(seconds)
 {
+    initialiseDigitVector(hourDigits);
     initialiseDigitVector(minuteDigits);
     initialiseDigitVector(secondDigits);
     setDigits();
 }
 
-Clock::Clock() : Clock(0, 0)
+Clock::Clock() : Clock(0, 0, 0)
 {}
 
 // Could be a lambda
@@ -38,6 +40,7 @@ void setDigitPair(int& digit, vector<unique_ptr<Digit>>& digitPair)
 
 void Clock::setDigits()
 {
+    setDigitPair(hours, hourDigits);
     setDigitPair(minutes, minuteDigits);
     setDigitPair(seconds, secondDigits);
 }
@@ -84,7 +87,7 @@ shared_ptr<vector<string>> digitPairToString(const vector<unique_ptr<Digit>>& di
 
 shared_ptr<vector<string>> Clock::toString() const
 {
-
+    const auto hourStrings = digitPairToString(hourDigits);
     const auto minuteStrings = digitPairToString(minuteDigits);
     const auto secondStrings = digitPairToString(secondDigits);
 
@@ -99,7 +102,9 @@ shared_ptr<vector<string>> Clock::toString() const
     separator->push_back("    ");
 
     vector<shared_ptr<vector<string>>> stringVectors;
-    stringVectors.reserve(3);
+    stringVectors.reserve(5);
+    stringVectors.push_back(hourStrings);
+    stringVectors.push_back(separator);
     stringVectors.push_back(minuteStrings);
     stringVectors.push_back(separator);
     stringVectors.push_back(secondStrings);

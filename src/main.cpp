@@ -8,23 +8,7 @@ using std::endl;
 
 int main()
 {
-    int num;
-    cout << "Please input a digit to display: ";
-    cin >> num;
-
-    if (num < 0 || num > 9)
-    {
-        cout << "Number not between 0 and 9." << endl;
-        return 1;
-    }
-
-    Digit d(num);
-
-    const auto lines = d.toString();
-    for (const auto& line : *lines)
-        cout << line << endl;
-
-    Clock c(12, 9);
+    Clock c(1, 2, 3);
 
     const auto clockLines = c.toString();
     for (const auto& line : *clockLines)
