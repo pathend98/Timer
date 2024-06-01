@@ -68,9 +68,9 @@ Time Clock::getTime() const
 shared_ptr<vector<string>> joinStringVectors(const vector<shared_ptr<vector<string>>>& stringVectors)
 {
     shared_ptr<vector<string>> result = make_shared<vector<string>>();
-    result->reserve(9);
+    result->reserve(7);
 
-    for (size_t i = 0; i < 9; ++i)
+    for (size_t i = 0; i < 7; ++i)
         result->push_back("");
 
     for (const auto& stringVector : stringVectors)

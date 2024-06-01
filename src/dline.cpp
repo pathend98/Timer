@@ -1,5 +1,4 @@
 #include "dline.h"
-#include <iostream>
 
 DLine::DLine(const Orientation o) : orientation(o), on(false)
 {}
