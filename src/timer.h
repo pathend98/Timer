@@ -13,9 +13,10 @@ class Timer
 
     public:
         Timer(const int hours, const int minutes, const int seconds);
-        Timer (const int seconds);
+        Timer(const int seconds);
         Timer();
 
         void start();
+        bool isRunning() const;
         std::shared_ptr<std::vector<std::string>> toString() const;
 };

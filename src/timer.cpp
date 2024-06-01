@@ -31,10 +31,14 @@ void Timer::start()
     while (seconds.load() > 0)
     {
         auto next = std::chrono::steady_clock::now() + std::chrono::seconds(1);
-        decrament();
         std::this_thread::sleep_until(next);
-    }
-    
+        decrament();
+    }    
+}
+
+bool Timer::isRunning() const
+{
+    return seconds.load() > 0;
 }
 
 std::shared_ptr<std::vector<std::string>> Timer::toString() const
