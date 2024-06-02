@@ -22,7 +22,7 @@ void Display::clear() const
     const auto lines = timer.toString();
 
     cout << "\033[" << lines->size() << "A";
-    for (auto i = 0; i < lines->size(); ++i)
+    for (unsigned int i = 0; i < lines->size(); ++i)
         cout << "\033[K";
 
 }

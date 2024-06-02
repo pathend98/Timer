@@ -1,13 +1,15 @@
-CC = g++
-FLAGS = -g -c
 
 SOURCEDIR = src
 BUILDDIR = build
 OBJDIR = $(BUILDDIR)/obj
+INCLUDEDIR = include
 
 EXECUTABLE = $(BUILDDIR)/main
 SOURCES = $(wildcard $(SOURCEDIR)/*.cpp)
 OBJECTS = $(patsubst $(SOURCEDIR)/%.cpp,$(OBJDIR)/%.o,$(SOURCES))
+
+CC = g++
+FLAGS = -std=c++20 -g -c -Wall -I./$(INCLUDEDIR)
 
 all: dir $(EXECUTABLE)
 
