@@ -1,4 +1,3 @@
-
 SOURCEDIR = src
 BUILDDIR = build
 OBJDIR = $(BUILDDIR)/obj
